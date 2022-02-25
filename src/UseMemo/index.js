@@ -1,8 +1,9 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useMemo, useState } from "react";
 import axios from "axios";
 
 export default function MemoTutorial() {
   const [data, setData] = useState(null);
+  const [toggle, setToggle] = useState(false);
 
   useEffect(() => {
     axios
@@ -28,9 +29,21 @@ export default function MemoTutorial() {
     return longestName;
   };
 
+  const getLongestName = useMemo(() => findLongestName(data), [data]);
+
   return (
     <div className="App">
-      <div>{findLongestName(data)}</div>
+      {/* use o console nos dois exemplos */}
+      <div>{getLongestName}</div>
+
+      <button
+        onClick={() => {
+          setToggle(!toggle);
+        }}
+      >
+        Toggle
+      </button>
+      {toggle && <h1>toggle</h1>}
     </div>
   );
 }
