@@ -1,5 +1,5 @@
 <h1>Estudo React Hooks</h1>
-<h1>Link to <a href="https://www.youtube.com/watch?v=LlvBzyy-558">React Hooks Course - All React Hooks Explained</a> on YouTube</h1>
+<h2>Link to <a href="https://www.youtube.com/watch?v=LlvBzyy-558">React Hooks Course - All React Hooks Explained</a> on YouTube</h2>
 
 <br/>
 
