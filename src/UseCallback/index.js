@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useCallback, useState } from "react";
 import axios from "axios";
 import Child from "./Child";
 
@@ -6,9 +6,12 @@ export default function CallBackTutorial() {
   const [toggle, setToggle] = useState(false);
   const [data, setData] = useState("Yo, pls sub to the channel");
 
-  const returnComment = () => {
-    return data;
-  };
+  const returnComment = useCallback(
+    (name) => {
+      return data + name;
+    },
+    [data]
+  );
 
   return (
     <div className="App">
