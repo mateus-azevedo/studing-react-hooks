@@ -90,3 +90,8 @@ Vocẽ pode confiar em useMemo como uma otimização de desempenho, não coom um
 <p>O <code>useMemo</code> só recuperará o valor memoizado quando o array receber uma atualização. Esta otimização ajuda a evitar cálculos caros em cada renderização.</p>
 
 [Implementação do useMemo no projeto](https://github.com/mateus-azevedo/studying-react-hooks/blob/master/src/UseMemo/index.js)
+
+<br/>
+<hr/>
+
+<h1>Link to <a href="https://www.youtube.com/watch?v=LlvBzyy-558">React Hooks Course - All React Hooks Explained</a> on YouTube</h1>
