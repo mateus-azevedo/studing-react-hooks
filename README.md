@@ -1,7 +1,9 @@
 <h1>Estudo React Hooks</h1>
 <h2>Link to <a href="https://www.youtube.com/watch?v=LlvBzyy-558">React Hooks Course - All React Hooks Explained</a> on YouTube</h2>
 
-<br/>
+<div align="center">
+  <img src="https://user-images.githubusercontent.com/62727807/155773248-9bdb104e-abea-4edf-8532-b3e6e4b1c36c.png" width="300px" />
+</div>
 
 - ## [useState](https://pt-br.reactjs.org/docs/hooks-reference.html#usestate)
 
@@ -36,7 +38,9 @@ const [state, dispatch] = useReducer(reducer, initalArg, init);
 
 `useReducer` é geralmetne preferível em relação ao `useState` quando se tem uma lógica de estado complexa que envolve múltiplos sub-valores, ou quando o próximo estado depende do estado anterior.
 
-<p>Exemplo da documentação de um contador:</p>
+<div align="center">
+  <p>Exemplo da documentação de um contador:</p>
+</div>
 
 ```js
 const initialState = { count: 0 };
