@@ -1,70 +1,74 @@
-# Getting Started with Create React App
+# Estudo React Hooks
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+- ## [useState](https://pt-br.reactjs.org/docs/hooks-reference.html#usestate)
 
-## Available Scripts
+```js
+const [state, setState] = useState(initialState);
+```
 
-In the project directory, you can run:
+Retorna um valor e uma função para atualizar o valor
 
-### `npm start`
+- ## [useEffect](https://pt-br.reactjs.org/docs/hooks-reference.html#usestate)
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+```js
+useEffect(didUpdate);
+```
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+<p>Mutações, assinaturas, temporizadores, logs e outros <code>side effects</code> não são permitidos dentro do corpo principal de um componente funcional.</p>
+<p>Use <code>useEffect</code>. A função passada será executada depois que a renderização estiver disponíel na tela.</p>
 
-### `npm test`
+- ## [useReducer](https://pt-br.reactjs.org/docs/hooks-reference.html#usereducer)
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+```js
+const [state, dispatch] = useReducer(reducer, initalArg, init);
+```
 
-### `npm run build`
+`useReducer` é geralmetne preferível em relação ao `useState` quando se tem uma lógica de estado complexa que envolve múltiplos sub-valores, ou quando o próximo estado depende do estado anterior.
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+<p style="text-align:center;font-size:20px;">Exemplo da documentação de um contador:</p>
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+```js
+const initialState = { count: 0 };
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+function reducer(state, action) {
+  switch (action.type) {
+    case "increment":
+      return { count: state.count + 1 };
+    case "decrement":
+      return { count: state.count - 1 };
+    default:
+      throw new Error();
+  }
+}
 
-### `npm run eject`
+function Counter() {
+  const [state, dispatch] = useReducer(reducer, initialState);
+  return (
+    <>
+      Count: {state.count}
+      <button onClick={() => dispatch({ type: "decrement" })}>-</button>
+      <button onClick={() => dispatch({ type: "increment" })}>+</button>
+    </>
+  );
+}
+```
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+- ## [useCallback](https://pt-br.reactjs.org/docs/hooks-reference.html#usecallback)
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+```js
+const memoizedCallback = useCallback(() => {
+  doSomething(a, b);
+}, [a, b]);
+```
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+Útil quando utlizamos callbacks a fim de otimizar componentes filhos, que dependem da igualdade de referência para evitar renderizações desnecessárias.
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
+- ## [useMemo](https://pt-br.reactjs.org/docs/hooks-reference.html#usememo)
 
-## Learn More
+```js
+const memoizedValue = useMemo(() => computeExpensiveValue(a, b), [a, b]);
+```
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+Vocẽ pode confiar em useMemo como uma otimização de desempenho, não coom uma garantia semântica.
 
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+<p>O <code>useMemo</code> só recuperará o valor memoizado quando o array receber uma atualização. Esta otimização ajuda a evitar cálculos caros em cada renderização.</p>
